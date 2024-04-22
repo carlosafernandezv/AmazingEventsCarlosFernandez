@@ -1,3 +1,35 @@
 .logo{
     width: 200px;
 }
+.naviga{
+    color: #6F6BBC;
+}
+
+.activer{
+    background-color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.navi li:hover{
+    color: #6F6BBC;
+    background-color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.navi{
+    color: #6F6BBC;
+}
+
+.carousel-item img{
+    max-height: 25vw;
+    
+}
+.inline{
+    
+}
+
+body {
+    background-color: #aee2c4ff;
+}
