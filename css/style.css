@@ -11,6 +11,7 @@
     font-size: 16px;
 }
 
+
 .navi li:hover{
     color: #6F6BBC;
     background-color: white;
@@ -26,10 +27,13 @@
     max-height: 25vw;
     
 }
-.inline{
-    
-}
+
 
 body {
     background-color: #aee2c4ff;
+}
+.fooImg img {
+    width: 25px;
+    height: 25px;
+
 }
