@@ -196,51 +196,44 @@ let data = {
 };
 console.log(data);
 
+let events = data.events
 
 let padreTarjetas = document.querySelector(".cardPadre")
 
-creaTarjeta(padreTarjetas, data[0])
+//console.log(padreTarjetas);
 
-pintarTarjetas(data, padreTarjetas)
+//crearTarjeta(padreTarjetas, events[0])
 
-function eliminarTarjeta(nombreAuto) {
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].name===nombreAuto) {
-            data.splice(i,1)
-        }
-        
-    }
-    
-}
 
-function pintarTarjetas(arregloAPintar, divPadre) {
-    for (let i = 0; i < arregloAPintar.length; i++) {
-        creaTarjeta(divPadre,arregloAPintar[i])
-        
-    }
-    
-}
-
-function creaTarjeta(padreTarjetas, tarjeta) {
-    
+function crearTarjeta(divPadre, tarjeta) {
     let nuevaTarjeta = document.createElement("div")
     nuevaTarjeta.classList.add("col")
-
     nuevaTarjeta.innerHTML = `
-<div class="card shadow-sm">
-    <img src="${data.image}" width="100%" height="225" class="object-fit-cover" alt="Books">
+    <div class="card shadow-sm">
+    <img src=" ${tarjeta.image}" width="100%" height="225" class="object-fit-cover" alt="Books">
     <div class="card-body">
-        <h5 class="card-title">${data.name}</h5>
-        <p class="card-text">${data.description}</p>
+        <h5 class="card-title">${tarjeta.name}</h5>
+        <p class="card-text ">${tarjeta.description}</p>
         <div class="d-flex justify-content-between align-items-center">
-            <small class="text-body-secondary">${data.price}</small>
-            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/details.html">Details</a></button>
+            <small class="text-body-secondary">${tarjeta.price}</small>
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                    href="/details.html">Details</a></button>
         </div>
     </div>
 </div>`
 
-    padre.appendChild(nuevaTarjeta)
+    divPadre.appendChild(nuevaTarjeta)
 
-    console.log(nuevaTarjeta);
+   console.log(nuevaTarjeta);
 
 }
+
+pintarTarjetas(events,padreTarjetas)
+function pintarTarjetas(arregloAPintar,divPadre) {
+    for (let i = 0; i < arregloAPintar.length; i++) {
+        crearTarjeta(divPadre,arregloAPintar[i])
+        
+        
+    }
+}
+
