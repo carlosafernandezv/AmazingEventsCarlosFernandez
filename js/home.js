@@ -210,25 +210,22 @@ function crearTarjeta(divPadre, tarjeta) {
     nuevaTarjeta.classList.add("col")
     nuevaTarjeta.innerHTML = `
     <div class="card shadow-sm">
-    <img src=" ${tarjeta.image}" width="100%" height="225" class="object-fit-cover" alt="Books">
+    <img src=" ${tarjeta.image}" width="100%" height="225" class="object-fit-cover" alt=">${tarjeta.name}">
     <div class="card-body">
         <h5 class="card-title">${tarjeta.name}</h5>
-        <p class="card-text ">${tarjeta.description}</p>
+        <p class="card-text h">${tarjeta.description}</p>
         <div class="d-flex justify-content-between align-items-center">
             <small class="text-body-secondary">${tarjeta.price}</small>
-            <button type="button" class="btn btn-sm btn-outline-secondary"><a
-                    href="/details.html">Details</a></button>
+            <a href="/details.html" class="btn btn-sm btn-primary">Details</a>
         </div>
     </div>
 </div>`
-
     divPadre.appendChild(nuevaTarjeta)
-
-   console.log(nuevaTarjeta);
-
+   //console.log(nuevaTarjeta);
 }
 
 pintarTarjetas(events,padreTarjetas)
+
 function pintarTarjetas(arregloAPintar,divPadre) {
     for (let i = 0; i < arregloAPintar.length; i++) {
         crearTarjeta(divPadre,arregloAPintar[i])
@@ -236,4 +233,19 @@ function pintarTarjetas(arregloAPintar,divPadre) {
         
     }
 }
+
+let arregloPasados = []
+let arregloFuturos = []
+
+for (let i = 0; i < events.length; i++) {
+    if (data.currentDate > events[i].date) {
+        arregloPasados.push(events[i])
+
+    } else {
+        arregloFuturos.push(events[i]) 
+    }
+}
+
+console.log(arregloPasados);
+console.log(arregloFuturos);
 
