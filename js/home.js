@@ -227,25 +227,24 @@ function crearTarjeta(divPadre, tarjeta) {
 pintarTarjetas(events,padreTarjetas)
 
 function pintarTarjetas(arregloAPintar,divPadre) {
+    divPadre.innerHTML = ""
     for (let i = 0; i < arregloAPintar.length; i++) {
         crearTarjeta(divPadre,arregloAPintar[i])
-        
-        
     }
 }
 
-let arregloPasados = []
-let arregloFuturos = []
+let buscar = document.getElementById("search")
+console.log(buscar);
 
-for (let i = 0; i < events.length; i++) {
-    if (data.currentDate > events[i].date) {
-        arregloPasados.push(events[i])
+buscar.addEventListener('input',(e)=>{
+    console.log(e.target.value);
 
-    } else {
-        arregloFuturos.push(events[i]) 
+    let tarjetasFiltradas = events.filter(events=>events.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    console.log(tarjetasFiltradas);
+    if (e.target.value != "") {
+        pintarTarjetas(tarjetasFiltradas,padreTarjetas)
     }
-}
-
-console.log(arregloPasados);
-console.log(arregloFuturos);
-
+    else{
+        pintarTarjetas(events,padreTarjetas)
+    }
+})
