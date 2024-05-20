@@ -200,6 +200,8 @@ let events = data.events
 
 let padreTarjetas = document.querySelector(".cardPadre")
 
+let padreChk = document.querySelector(".padreChk")
+
 //console.log(padreTarjetas);
 
 //crearTarjeta(padreTarjetas, events[0])
@@ -234,13 +236,8 @@ function pintarTarjetas(arregloAPintar,divPadre) {
 }
 
 let buscar = document.getElementById("search")
-console.log(buscar);
-
 buscar.addEventListener('input',(e)=>{
-    console.log(e.target.value);
-
     let tarjetasFiltradas = events.filter(events=>events.name.toLowerCase().includes(e.target.value.toLowerCase()))
-    console.log(tarjetasFiltradas);
     if (e.target.value != "") {
         pintarTarjetas(tarjetasFiltradas,padreTarjetas)
     }
@@ -248,3 +245,25 @@ buscar.addEventListener('input',(e)=>{
         pintarTarjetas(events,padreTarjetas)
     }
 })
+
+function crearChk(divPadre, tarjeta) {
+    let nuevachk = document.createElement("div")
+    nuevachk.classList.add("form-check-inline")
+    nuevachk.classList.add("form-check")
+    nuevachk.innerHTML = 
+    `
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox${tarjeta._id}" value="option1">
+        <label class="form-check-label" for="inlineCheckbox${tarjeta._id}">${tarjeta.category}</label>
+   `
+
+    divPadre.appendChild(nuevachk)
+}
+
+function pintarChk(arregloAPintar,divPadre) {
+    divPadre.innerHTML = ""
+    for (let i = 0; i < arregloAPintar.length; i++) {
+        crearChk(divPadre,arregloAPintar[i])
+    }
+}
+
+pintarChk(events,padreChk)
