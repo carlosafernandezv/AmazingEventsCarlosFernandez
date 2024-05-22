@@ -206,7 +206,19 @@ document.addEventListener("DOMContentLoaded",()=>{
     let tarjeta = events.filter(evento=>evento._id ==idDetails)
     tarjeta.forEach(evento=>{
         let divDetails = document.createElement("div")
-        divDetails.className=
+        divDetails.className="card card-details"
+        divDetails.innerHTML=` 
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="${evento.image}" class="img-fluid rounded w-auto img-card-details" alt="${evento.name}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body p-2">
+                    <h5 class="card-title text-decoration-underline text-center">${evento.name}</h5>
+                    <p class="card-text ></p>
+        
+        `
+        
 
     })
 })
