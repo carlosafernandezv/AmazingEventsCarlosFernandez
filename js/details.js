@@ -212,14 +212,6 @@ document.addEventListener("DOMContentLoaded",()=>{
         divDetails.className="card card-details"
         console.log(divDetails);
         divDetails.innerHTML=` 
-
-        
-        
-
-
-
-
-
         <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
@@ -252,8 +244,8 @@ document.addEventListener("DOMContentLoaded",()=>{
           </div>
         </div>
       </div>
-
         `
         cardDetails.appendChild(divDetails)
     })
 })
+
