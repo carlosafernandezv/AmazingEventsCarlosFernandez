@@ -196,18 +196,8 @@ let data = {
 };
 
 let events = data.events
-
-
-
-
 let padreTarjetas = document.querySelector(".cardPadre")
-
 let padreChk = document.querySelector(".padreChk")
-
-//console.log(padreTarjetas);
-
-//crearTarjeta(padreTarjetas, events[0])
-
 
 function crearTarjeta(divPadre, tarjeta) {
     let nuevaTarjeta = document.createElement("div")
@@ -225,26 +215,26 @@ function crearTarjeta(divPadre, tarjeta) {
     </div>
 </div>`
     divPadre.appendChild(nuevaTarjeta)
-   //console.log(nuevaTarjeta);
+    
 }
 
-pintarTarjetas(events,padreTarjetas)
-
-function pintarTarjetas(arregloAPintar,divPadre) {
+function pintarTarjetas(arregloAPintar, divPadre) {
     divPadre.innerHTML = ""
     for (let i = 0; i < arregloAPintar.length; i++) {
-        crearTarjeta(divPadre,arregloAPintar[i])
+        crearTarjeta(divPadre, arregloAPintar[i])
     }
 }
 
+pintarTarjetas(events, padreTarjetas)
+
 let buscar = document.getElementById("search")
-buscar.addEventListener('input',(e)=>{
-    let tarjetasFiltradas = events.filter(events=>events.name.toLowerCase().includes(e.target.value.toLowerCase()))
+buscar.addEventListener('input', (e) => {
+    let tarjetasFiltradas = events.filter(events => events.name.toLowerCase().includes(e.target.value.toLowerCase()))
     if (e.target.value != "") {
-        pintarTarjetas(tarjetasFiltradas,padreTarjetas)
+        pintarTarjetas(tarjetasFiltradas, padreTarjetas)
     }
-    else{
-        pintarTarjetas(events,padreTarjetas)
+    else {
+        pintarTarjetas(events, padreTarjetas)
     }
 })
 
@@ -252,8 +242,8 @@ function crearChk(divPadre, tarjeta) {
     let nuevachk = document.createElement("div")
     nuevachk.classList.add("form-check-inline")
     nuevachk.classList.add("form-check")
-    nuevachk.innerHTML = 
-    `
+    nuevachk.innerHTML =
+        `
         <input class="form-check-input" type="checkbox" id="${tarjeta.name}" value="${tarjeta.name}">
         <label class="form-check-label" for="${tarjeta.name}">${tarjeta.name}</label>
    `
@@ -261,51 +251,41 @@ function crearChk(divPadre, tarjeta) {
     divPadre.appendChild(nuevachk)
 }
 
-function pintarChk(arregloAPintar,divPadre) {
+function pintarChk(arregloAPintar, divPadre) {
     divPadre.innerHTML = ""
     for (let i = 0; i < arregloAPintar.length; i++) {
-        crearChk(divPadre,arregloAPintar[i])
+        crearChk(divPadre, arregloAPintar[i])
     }
 }
 
-let categoria=[]
+let categoria = []
 
-events.forEach((event, index)=>
-    {
-        if (!categoria.some(cat => cat.name === event.category)) 
-            { categoria.push
-                ({
-                id:index+1,
-                name:event.category});
-            } 
-    });
-
-
-
-
-pintarChk(categoria,padreChk)
-
-
-function marcarRealizada(idObjeto){
-    if (categoria[idObjeto-1].name == events.category){
-        console.log("true");
-        
-    }else{
-        console.log("false");
+events.forEach((event, index) => {
+    if (!categoria.some(cat => cat.name === event.category)) {
+        categoria.push
+        ({
+            id: index + 1,
+            name: event.category
+        });
     }
-}
+});
+
+
+
+
+pintarChk(categoria, padreChk)
+
+
 
 
 let chk1 = document.getElementById("padreChk")
-console.log(chk1);
 
-chk1.addEventListener('change', (evento)=>{
-    console.log(evento);
-    console.log(evento.target);
-    console.log(evento.target.value);
+
+chk1.addEventListener('change', (evento) => {
+
     let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
-    console.log(chkCheck);
-    let eventosFiltrados = events.filter(events=>{
+    
+    let eventosFiltrados = events.filter(events => {
         for (let i = 0; i < chkCheck.length; i++) {
             if (chkCheck[i].value == events.category) {
                 return events
@@ -313,10 +293,22 @@ chk1.addEventListener('change', (evento)=>{
         }
     })
 
-    if (chkCheck.length==0) {
-        pintarTarjetas(events,padreTarjetas)
+    if (chkCheck.length == 0) {
+        pintarTarjetas(events, padreTarjetas)
     } else {
-        pintarTarjetas(eventosFiltrados,padreTarjetas) 
+        pintarTarjetas(eventosFiltrados, padreTarjetas)
     }
-    
-}) 
+
+})
+
+function AsistanceEstimateFilt(id) {
+    if (events.assistance == undefined) {
+        divDetails.innerHTML=` 
+        <p class="card-text">Estimate:<small class="text-body-secondary"> ${evento.estimate}</small></p>`
+        
+    } else {
+        divDetails.innerHTML=` 
+        <p class="card-text">Assistance:<small class="text-body-secondary"> ${evento.assistance}</small></p>`
+    }
+
+}
