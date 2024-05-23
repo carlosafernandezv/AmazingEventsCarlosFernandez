@@ -196,29 +196,64 @@ let data = {
 };
 
 let events = data.events
-
-console.log(events);
-
+cardDetails = document.getElementById("cardDetails")
 idDetails = window.location.href
+console.log(idDetails);
 
 idDetails = new URL(idDetails).searchParams.get("id")
+console.log(idDetails);
+
 document.addEventListener("DOMContentLoaded",()=>{
     let tarjeta = events.filter(evento=>evento._id ==idDetails)
+    console.log(tarjeta);
     tarjeta.forEach(evento=>{
         let divDetails = document.createElement("div")
+        console.log(divDetails);
         divDetails.className="card card-details"
+        console.log(divDetails);
         divDetails.innerHTML=` 
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="${evento.image}" class="img-fluid rounded w-auto img-card-details" alt="${evento.name}">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body p-2">
-                    <h5 class="card-title text-decoration-underline text-center">${evento.name}</h5>
-                    <p class="card-text ></p>
+
         
-        `
         
 
+
+
+
+
+        <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="${evento.image}" class="img-fluid rounded-start" alt="${evento.name}">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">${evento.name}</h5>
+              <p class="card-text">
+              ${evento.description}
+              </p>
+              <div class="d-flex justify-content-between" >
+                <div>
+                  <p class="card-text">Date: <small class="text-body-secondary"> ${evento.date}</small></p>
+                  <p class="card-text">Category: <small class="text-body-secondary"> ${evento.category}</small></p>
+                  <p class="card-text">Place: <small class="text-body-secondary"> ${evento.place}</small></p>
+                </div>
+                <div>
+                  <p class="card-text">Capacity:<small class="text-body-secondary"> ${evento.capacity}</small></p>
+                  
+                  <p class="card-text">Estimate:<small class="text-body-secondary"> ${evento.estimate}</small></p>
+                  <p class="card-text">Assistance:<small class="text-body-secondary"> ${evento.assistance}</small></p>
+
+                  <p class="card-text">Price:<small class:"text-body-secondary"> ${evento.price}</small></p>
+                </div>
+              </div>
+              <a href="/home.html" class="btn btn-primary">Go somewhere</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+        `
+        cardDetails.appendChild(divDetails)
     })
 })

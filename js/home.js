@@ -220,7 +220,7 @@ function crearTarjeta(divPadre, tarjeta) {
         <p class="card-text h">${tarjeta.description}</p>
         <div class="d-flex justify-content-between align-items-center">
             <small class="text-body-secondary">${tarjeta.price}</small>
-            <a href="/details.html" class="btn btn-sm btn-primary">Details</a>
+            <a href="/details.html?id=${tarjeta._id}" class="btn btn-sm btn-primary">Details</a>
         </div>
     </div>
 </div>`
