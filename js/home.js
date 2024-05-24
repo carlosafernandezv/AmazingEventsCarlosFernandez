@@ -279,20 +279,11 @@ pintarChk(categoria, padreChk)
 
 
 let chk1 = document.getElementById("padreChk")
-
-
 chk1.addEventListener('change', (evento) => {
-
     let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
-    
-    let eventosFiltrados = events.filter(events => {
-        for (let i = 0; i < chkCheck.length; i++) {
-            if (chkCheck[i].value == events.category) {
-                return events
-            }
-        }
-    })
-
+    chkCheck=Array.from(chkCheck)
+    chkCheck=chkCheck.map(chk1=>chk1.value)
+    let eventosFiltrados = events.filter(events => chkCheck.includes(events.category))
     if (chkCheck.length == 0) {
         pintarTarjetas(events, padreTarjetas)
     } else {
@@ -301,7 +292,7 @@ chk1.addEventListener('change', (evento) => {
 
 })
 
-function AsistanceEstimateFilt(id) {
+/* function AsistanceEstimateFilt(id) {
     if (events.assistance == undefined) {
         divDetails.innerHTML=` 
         <p class="card-text">Estimate:<small class="text-body-secondary"> ${evento.estimate}</small></p>`
@@ -312,3 +303,32 @@ function AsistanceEstimateFilt(id) {
     }
 
 }
+
+ */
+/* function filtrosChkSearch() {
+    let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
+    let searchFilter = events.filter(events => events.name.toLowerCase().includes(e.target.value.toLowerCase()))
+
+    if (chkCheck.length>0){
+
+        let chkfilter = searchFilter.filter(events=>{
+
+            for (let i = 0; i < chkCheck.length; i++) {
+                if (chkCheck[i].value==events.category) {
+                    return events
+                }
+            }
+
+        })
+        pintarTarjetas(chkfilter, padreTarjetas)
+    }else{
+        if (searchFilter.length>0) {
+            pintarTarjetas(searchFilter, padreTarjetas)
+        }
+        else{
+            searchError(padreTarjetas)
+        }
+    }
+} */
+
+
