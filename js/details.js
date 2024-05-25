@@ -211,7 +211,12 @@ document.addEventListener("DOMContentLoaded",()=>{
         let place =document.getElementById("place").innerHTML=`${evento.place}`
         let capacity =document.getElementById("capacity").innerHTML=`${evento.capacity}`
         let assistance =document.getElementById("assistance").innerHTML=`${evento.assistance}`
+        let estimate = document.getElementById("estimate").innerHTML=`${evento.estimate}`
         let price =document.getElementById("price").innerHTML=`${evento.price}`
+
+        if (condition) {
+            
+        }
     })
 })
 
