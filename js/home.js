@@ -229,7 +229,16 @@ pintarTarjetas(events, padreTarjetas)
 
 let buscar = document.getElementById("search")
 buscar.addEventListener('input', (e) => {
-    let tarjetasFiltradas = events.filter(events => events.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    
+    let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
+    let texto = document.getElementById("search").value
+
+    let tarjetasFiltradas = filtrarText( texto, events )
+    
+    if (chkCheck.length != 0) {
+        tarjetasFiltradas=filtrarCheck(chkCheck,tarjetasFiltradas)
+    }
+
     if (e.target.value != "") {
         pintarTarjetas(tarjetasFiltradas, padreTarjetas)
     }
@@ -280,55 +289,36 @@ pintarChk(categoria, padreChk)
 
 let chk1 = document.getElementById("padreChk")
 chk1.addEventListener('change', (evento) => {
+    let eventosFiltrados =events
     let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
-    chkCheck=Array.from(chkCheck)
-    chkCheck=chkCheck.map(chk1=>chk1.value)
-    let eventosFiltrados = events.filter(events => chkCheck.includes(events.category))
-    if (chkCheck.length == 0) {
-        pintarTarjetas(events, padreTarjetas)
-    } else {
-        pintarTarjetas(eventosFiltrados, padreTarjetas)
+    
+    if (chkCheck.length != 0) {
+        eventosFiltrados = filtrarCheck(chkCheck,events)
     }
+    
+
+    let texto = document.getElementById("search").value
+    if (texto!="") {
+        eventosFiltrados = filtrarText(texto,eventosFiltrados)
+        
+    }
+
+    pintarTarjetas(eventosFiltrados, padreTarjetas)
 
 })
 
-/* function AsistanceEstimateFilt(id) {
-    if (events.assistance == undefined) {
-        divDetails.innerHTML=` 
-        <p class="card-text">Estimate:<small class="text-body-secondary"> ${evento.estimate}</small></p>`
-        
-    } else {
-        divDetails.innerHTML=` 
-        <p class="card-text">Assistance:<small class="text-body-secondary"> ${evento.assistance}</small></p>`
-    }
-
+function filtrarCheck(chkCheck, arreglo) {
+    
+    chkCheck=Array.from(chkCheck)
+    chkCheck=chkCheck.map(chk1=>chk1.value)
+    let eventosFiltrados = arreglo.filter(events => chkCheck.includes(events.category))
+    return eventosFiltrados
 }
 
- */
-/* function filtrosChkSearch() {
-    let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
-    let searchFilter = events.filter(events => events.name.toLowerCase().includes(e.target.value.toLowerCase()))
-
-    if (chkCheck.length>0){
-
-        let chkfilter = searchFilter.filter(events=>{
-
-            for (let i = 0; i < chkCheck.length; i++) {
-                if (chkCheck[i].value==events.category) {
-                    return events
-                }
-            }
-
-        })
-        pintarTarjetas(chkfilter, padreTarjetas)
-    }else{
-        if (searchFilter.length>0) {
-            pintarTarjetas(searchFilter, padreTarjetas)
-        }
-        else{
-            searchError(padreTarjetas)
-        }
-    }
-} */
+function filtrarText(texto, arreglo) {
+    
+    let tarjetasFiltradas = arreglo.filter(events => events.name.toLowerCase().includes(texto.toLowerCase()))
+    return tarjetasFiltradas
+}
 
 
