@@ -242,12 +242,17 @@ function pintarTarjetas(arregloAPintar,divPadre) {
 pintarTarjetas(arregloFuturos,padreTarjetas)
 
 let buscar = document.getElementById("search")
-
-
 buscar.addEventListener('input', (e) => {
     
-    let tarjetasFiltradas = arregloFuturos.filter(arregloFuturos => arregloFuturos.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
+    let texto = document.getElementById("search").value
+
+    let tarjetasFiltradas = filtrarText( texto, arregloFuturos )
     
+    if (chkCheck.length != 0) {
+        tarjetasFiltradas=filtrarCheck(chkCheck,tarjetasFiltradas)
+    }
+
     if (e.target.value != "") {
         pintarTarjetas(tarjetasFiltradas, padreTarjetas)
     }
@@ -256,6 +261,43 @@ buscar.addEventListener('input', (e) => {
     }
 })
 
+
+let categoria = []
+
+arregloFuturos.forEach((arregloFuturos, index) => {
+    if (!categoria.some(cat => cat.name === arregloFuturos.category)) {
+        categoria.push
+        ({
+            id: index + 1,
+            name: arregloFuturos.category
+        });
+        
+    }
+});
+
+
+pintarChk(categoria, padreChk)
+
+let chk1 = document.getElementById("padreChk")
+
+chk1.addEventListener('change', (evento) => {
+    let eventosFiltrados = arregloFuturos
+    let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
+    
+    if (chkCheck.length != 0) {
+        eventosFiltrados = filtrarCheck(chkCheck,arregloFuturos)
+    }
+    
+
+    let texto = document.getElementById("search").value
+    if (texto!="") {
+        eventosFiltrados = filtrarText(texto,eventosFiltrados)
+        
+    }
+
+    pintarTarjetas(eventosFiltrados, padreTarjetas)
+
+})
 
 function crearChk(divPadre, tarjeta) {
     let nuevachk = document.createElement("div")
@@ -280,40 +322,16 @@ function pintarChk(arregloAPintar, divPadre) {
     }
 }
 
-let categoria = []
-
-arregloFuturos.forEach((arregloFuturos, index) => {
-    if (!categoria.some(cat => cat.name === arregloFuturos.category)) {
-        categoria.push
-        ({
-            id: index + 1,
-            name: arregloFuturos.category
-        });
-        
-    }
-});
-
-
-pintarChk(categoria, padreChk)
-
-let chk1 = document.getElementById("padreChk")
-
-chk1.addEventListener('change', (evento) => {
-
-    let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
+function filtrarCheck(chkCheck, arreglo) {
     
-    let eventosFiltrados = arregloFuturos.filter(arregloFuturos => {
-        for (let i = 0; i < chkCheck.length; i++) {
-            if (chkCheck[i].value == arregloFuturos.category) {
-                return arregloFuturos
-            }
-        }
-    })
+    chkCheck=Array.from(chkCheck)
+    chkCheck=chkCheck.map(chk1=>chk1.value)
+    let eventosFiltrados = arreglo.filter(events => chkCheck.includes(events.category))
+    return eventosFiltrados
+}
 
-    if (chkCheck.length == 0) {
-        pintarTarjetas(arregloFuturos, padreTarjetas)
-    } else {
-        pintarTarjetas(eventosFiltrados, padreTarjetas)
-    }
-
-})
+function filtrarText(texto, arreglo) {
+    
+    let tarjetasFiltradas = arreglo.filter(events => events.name.toLowerCase().includes(texto.toLowerCase()))
+    return tarjetasFiltradas
+}
