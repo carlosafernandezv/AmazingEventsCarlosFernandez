@@ -233,7 +233,7 @@ buscar.addEventListener('input', (e) => {
     }
 
     else {
-        pintarTarjetas(arregloPasados, padreTarjetas)
+        pintarTarjetas(tarjetasFiltradas, padreTarjetas)
     }
 })
 

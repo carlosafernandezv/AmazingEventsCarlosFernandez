@@ -199,24 +199,34 @@ let events = data.events
 idDetails = window.location.href
 idDetails = new URL(idDetails).searchParams.get("id")
 
-document.addEventListener("DOMContentLoaded",()=>{
-    let tarjeta = events.filter(evento=>evento._id ==idDetails)
+document.addEventListener("DOMContentLoaded", () => {
+    let tarjeta = events.filter(events => events._id == idDetails)
     console.log(tarjeta);
-    tarjeta.forEach(evento=>{
-        let img =document.getElementById("img").innerHTML=`<img id="img" src="${evento.image}" class="img-fluid rounded-start" alt="${evento.name}">`
-        let name =document.getElementById("name").innerHTML=`${evento.name}`
-        let description =document.getElementById("description").innerHTML=`${evento.description}`
-        let date =document.getElementById("date").innerHTML=`${evento.date}`
-        let category =document.getElementById("category").innerHTML=`${evento.category}`
-        let place =document.getElementById("place").innerHTML=`${evento.place}`
-        let capacity =document.getElementById("capacity").innerHTML=`${evento.capacity}`
-        let assistance =document.getElementById("assistance").innerHTML=`${evento.assistance}`
-        let estimate = document.getElementById("estimate").innerHTML=`${evento.estimate}`
-        let price =document.getElementById("price").innerHTML=`${evento.price}`
+    tarjeta.forEach(events => {
+        let img = document.getElementById("img").innerHTML = `<img id="img" src="${events.image}" class="img-fluid rounded-start" alt="${events.name}">`
+        let name = document.getElementById("name").innerHTML = `${events.name}`
+        let description = document.getElementById("description").innerHTML = `${events.description}`
+        let date = document.getElementById("date").innerHTML = `${events.date}`
+        let category = document.getElementById("category").innerHTML = `${events.category}`
+        let place = document.getElementById("place").innerHTML = `${events.place}`
+        let capacity = document.getElementById("capacity").innerHTML = `Capacity:<small class="text-body-secondary"> ${events.capacity} </small> `
+        let estimate = document.getElementById("estimate")
+        let assistance = document.getElementById("assistance")
+        let price = document.getElementById("price").innerHTML = `${events.price}`
+                //asistencia no es igual nul
+        if (events.assistance != null || events.assistance != undefined) {
 
-        if (condition) {
+            assistance.innerHTML = `Assistance:<small class="text-body-secondary"> ${events.assistance} </small> `
+            estimate.style.display = "none";
             
         }
+        else{
+            estimate.innerHTML = `Estimate:<small class="text-body-secondary"> ${events.estimate} </small> `
+            assistance.style.display = "none";
+            
+        }
+        
+
     })
 })
 
