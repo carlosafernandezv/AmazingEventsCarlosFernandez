@@ -208,10 +208,10 @@ buscar.addEventListener('input', (e) => {
     let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
     let texto = document.getElementById("search").value
 
-    let tarjetasFiltradas = filtrarText(texto, events)
+    let tarjetasFiltradas = funciones.filtrarText(texto, events)
 
     if (chkCheck.length != 0) {
-        tarjetasFiltradas = filtrarCheck(chkCheck, tarjetasFiltradas)
+        tarjetasFiltradas = funciones.filtrarCheck(chkCheck, tarjetasFiltradas)
     }
 
     if (e.target.value != "") {
@@ -242,11 +242,11 @@ chk1.addEventListener('change', (evento) => {
     let eventosFiltrados = events
     let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
     if (chkCheck.length != 0) {
-        eventosFiltrados = filtrarCheck(chkCheck, events)
+        eventosFiltrados = funciones.filtrarCheck(chkCheck, events)
     }
     let texto = document.getElementById("search").value
     if (texto != "") {
-        eventosFiltrados = filtrarText(texto, eventosFiltrados)
+        eventosFiltrados = funciones.filtrarText(texto, eventosFiltrados)
         
     }
 
@@ -256,36 +256,3 @@ chk1.addEventListener('change', (evento) => {
 
 })
 
-function filtrarCheck(chkCheck, arreglo) {
-
-    chkCheck = Array.from(chkCheck)
-    chkCheck = chkCheck.map(chk1 => chk1.value)
-    let eventosFiltrados = arreglo.filter(events => chkCheck.includes(events.category))
-    return eventosFiltrados
-}
-
-function filtrarText(texto, arreglo) {
-    let tarjetasFiltradas = arreglo.filter(events => events.name.toLowerCase().includes(texto.toLowerCase()))
-    console.log(tarjetasFiltradas);
-    return tarjetasFiltradas
-    
-    
-    
-}
-
-
-
-function error() {
-    padreTarjetas.innerHTML = `
-        <div class="container text-center">
-		<div class="brand">
-			<span class="glyphicon glyphicon-king" aria-hidden="true"></span>
-			<h3 class="text-uppercase">The King Maker</h3>
-		</div>
-		<h1 class="head"><span>404</span></h1>
-		<p>Oops! The Page you requested was not found!</p>
-		<a href="#" class="btn-outline"> Back to Home</a>
-	</div>
-   `
-
-}

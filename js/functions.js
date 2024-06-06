@@ -43,3 +43,35 @@ export function pintarChk(arregloAPintar, divPadre) {
         crearChk(divPadre, arregloAPintar[i])
     }
 }
+
+export function filtrarCheck(chkCheck, arreglo) {
+
+    chkCheck = Array.from(chkCheck)
+    chkCheck = chkCheck.map(chk1 => chk1.value)
+    let eventosFiltrados = arreglo.filter(events => chkCheck.includes(events.category))
+    return eventosFiltrados
+}
+
+export function filtrarText(texto, arreglo) {
+    let tarjetasFiltradas = arreglo.filter(events => events.name.toLowerCase().includes(texto.toLowerCase()))
+    console.log(tarjetasFiltradas);
+    return tarjetasFiltradas
+    
+    
+    
+}
+
+export function error() {
+    padreTarjetas.innerHTML = `
+        <div class="container text-center">
+		<div class="brand">
+			<span class="glyphicon glyphicon-king" aria-hidden="true"></span>
+			<h3 class="text-uppercase">The King Maker</h3>
+		</div>
+		<h1 class="head"><span>404</span></h1>
+		<p>Oops! The Page you requested was not found!</p>
+		<a href="#" class="btn-outline"> Back to Home</a>
+	</div>
+   `
+
+}
