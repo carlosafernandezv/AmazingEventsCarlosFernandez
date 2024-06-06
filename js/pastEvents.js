@@ -1,4 +1,4 @@
-//import * as funciones from "../modules/functions.js";
+import * as funciones from "../modules/functions.js";
 let data = {
     currentDate: "2023-01-01",
     events: [
@@ -214,7 +214,7 @@ for (let i = 0; i < events.length; i++) {
     }
 }
 
-pintarTarjetas(arregloPasados, padreTarjetas)
+funciones.pintarTarjetas(arregloPasados, padreTarjetas)
 let buscar = document.getElementById("search")
 
 buscar.addEventListener('input', (e) => {
@@ -222,19 +222,19 @@ buscar.addEventListener('input', (e) => {
     let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
     let texto = document.getElementById("search").value
 
-    let tarjetasFiltradas = filtrarText(texto, arregloPasados)
+    let tarjetasFiltradas = funciones.filtrarText(texto, arregloPasados)
 
 
     if (chkCheck.length != 0) {
-        tarjetasFiltradas = filtrarCheck(chkCheck, tarjetasFiltradas)
+        tarjetasFiltradas = funciones.filtrarCheck(chkCheck, tarjetasFiltradas)
     }
 
     if (e.target.value != "") {
-        pintarTarjetas(tarjetasFiltradas, padreTarjetas)
+        funciones.pintarTarjetas(tarjetasFiltradas, padreTarjetas)
     }
 
     else {
-        pintarTarjetas(tarjetasFiltradas, padreTarjetas)
+        funciones.pintarTarjetas(tarjetasFiltradas, padreTarjetas)
     }
 })
 
@@ -249,7 +249,7 @@ arregloPasados.forEach((arregloPasados, index) => {
     }
 });
 
-pintarChk(categoria, padreChk)
+funciones.pintarChk(categoria, padreChk)
 
 chk1.addEventListener('change', (evento) => {
 
@@ -258,21 +258,21 @@ chk1.addEventListener('change', (evento) => {
     let chkCheck = document.querySelectorAll("input[type=checkbox]:checked")
 
     if (chkCheck.length != 0) {
-        eventosFiltrados = filtrarCheck(chkCheck, arregloPasados)
+        eventosFiltrados = funciones.filtrarCheck(chkCheck, arregloPasados)
     }
 
     let texto = document.getElementById("search").value
     if (texto != "") {
-        eventosFiltrados = filtrarText(texto, eventosFiltrados)
+        eventosFiltrados = funciones.filtrarText(texto, eventosFiltrados)
 
     }
 
-    pintarTarjetas(eventosFiltrados, padreTarjetas)
+    funciones.pintarTarjetas(eventosFiltrados, padreTarjetas)
 
 })
 
 
-function crearTarjeta(divPadre, tarjeta) {
+/* function crearTarjeta(divPadre, tarjeta) {
     let nuevaTarjeta = document.createElement("div")
     nuevaTarjeta.classList.add("col")
     nuevaTarjeta.innerHTML = `
@@ -289,18 +289,18 @@ function crearTarjeta(divPadre, tarjeta) {
 </div>`
     divPadre.appendChild(nuevaTarjeta)
    
-}
+} */
 
-function pintarTarjetas(arregloAPintar,divPadre) {
+/* function pintarTarjetas(arregloAPintar,divPadre) {
     divPadre.innerHTML = ""
     for (let i = 0; i < arregloAPintar.length; i++) {
         crearTarjeta(divPadre,arregloAPintar[i])
         
         
     }
-} 
+} */ 
 
-function crearChk(divPadre, tarjeta) {
+/* function crearChk(divPadre, tarjeta) {
     let nuevachk = document.createElement("div")
    
     nuevachk.classList.add("form-check-inline")
@@ -314,25 +314,25 @@ function crearChk(divPadre, tarjeta) {
    `
   
     divPadre.appendChild(nuevachk)
-}
+} */
 
-function pintarChk(arregloAPintar, divPadre) {
+/* function pintarChk(arregloAPintar, divPadre) {
     divPadre.innerHTML = ""
     for (let i = 0; i < arregloAPintar.length; i++) {
         crearChk(divPadre, arregloAPintar[i])
     }
-}
+} */
 
-function filtrarCheck(chkCheck, arreglo) {
+/* function filtrarCheck(chkCheck, arreglo) {
     
     chkCheck=Array.from(chkCheck)
     chkCheck=chkCheck.map(chk1=>chk1.value)
     let eventosFiltrados = arreglo.filter(events => chkCheck.includes(events.category))
     return eventosFiltrados
-} 
+} */ 
 
-function filtrarText(texto, arreglo) {
+/* function filtrarText(texto, arreglo) {
     
     let tarjetasFiltradas = arreglo.filter(events => events.name.toLowerCase().includes(texto.toLowerCase()))
     return tarjetasFiltradas
-}
+} */
