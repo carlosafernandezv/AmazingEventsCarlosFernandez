@@ -247,12 +247,12 @@ chk1.addEventListener('change', (evento) => {
     let texto = document.getElementById("search").value
     if (texto != "") {
         eventosFiltrados = funciones.filtrarText(texto, eventosFiltrados)
-
+        
     }
 
     funciones.pintarTarjetas(eventosFiltrados, padreTarjetas)
 
-
+    
 
 })
 
