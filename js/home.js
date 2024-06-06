@@ -1,4 +1,4 @@
-import * as funciones from "./functions.js";
+import * as funciones from "../modules/functions.js";
 let data = {
     currentDate: "2023-01-01",
     events: [
