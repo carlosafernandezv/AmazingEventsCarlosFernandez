@@ -4,6 +4,7 @@ export function pintarTarjetas(arregloAPintar, divPadre) {
         crearTarjeta(divPadre, arregloAPintar[i])
     }
 }
+
 export function crearTarjeta(divPadre, tarjeta) {
     let nuevaTarjeta = document.createElement("div")
     nuevaTarjeta.classList.add("col")
@@ -21,4 +22,24 @@ export function crearTarjeta(divPadre, tarjeta) {
 </div>`
     divPadre.appendChild(nuevaTarjeta)
 
+}
+
+export function crearChk(divPadre, tarjeta) {
+    let nuevachk = document.createElement("div")
+    nuevachk.classList.add("form-check-inline")
+    nuevachk.classList.add("form-check")
+    nuevachk.innerHTML =
+        `
+        <input class="form-check-input" type="checkbox" id="${tarjeta.name}" value="${tarjeta.name}">
+        <label class="form-check-label" for="${tarjeta.name}">${tarjeta.name}</label>
+   `
+
+    divPadre.appendChild(nuevachk)
+}
+
+export function pintarChk(arregloAPintar, divPadre) {
+    divPadre.innerHTML = ""
+    for (let i = 0; i < arregloAPintar.length; i++) {
+        crearChk(divPadre, arregloAPintar[i])
+    }
 }
