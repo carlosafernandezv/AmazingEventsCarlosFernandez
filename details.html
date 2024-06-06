@@ -14,34 +14,38 @@
 
 <body>
   <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg">
 
-    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
 
-      <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="/image/amazing_brand.png" class="logo" alt="logo"></a>
 
-        <a class="navbar-brand" href="#"><img src="/image/amazing_brand.png" class="logo" alt="logo"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end naviga" id="navbarSupportedContent">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end naviga" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0 navi ">
 
-          <ul class="navbar-nav mb-2 mb-lg-0 navi ">
+              <li class="nav-item"><a class="nav-link " href="/home.html">Home</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="/upcomingEvents.html">Upcoming Events</a></li>
+              <li class="nav-item"><a class="nav-link" href="/pastEvents.html">Past Events</a></li>
+              <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="/stats.html">Stats</a></li>
+              <li class="nav-item"><a class="nav-link active activer" aria-current="page" href="#">Details</a></li>
 
-            <li class="nav-item"><a class="nav-link " href="/home.html">Home</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="/upcomingEvents.html">Upcoming Events</a></li>
-            <li class="nav-item"><a class="nav-link" href="/pastEvents.html">Past Events</a></li>
-            <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="/stats.html">Stats</a></li>
-            <li class="nav-item"><a class="nav-link active activer" aria-current="page" href="#">Details</a></li>
+            </ul>
 
-          </ul>
-
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
+
+
   </header>
   <main class="d-flex justify-content-center " id="cardDetails">
     <div class="card card-details">
@@ -54,31 +58,31 @@
             <div class="card-body">
               <h5 class="card-title" id="name"></h5>
               <p class="card-text" id="description">
-              
+
               </p>
-              <div class="d-flex justify-content-between" >
+              <div class="d-flex justify-content-between">
                 <div>
-                  <p class="card-text" >Date: <small class="text-body-secondary" id="date"> </small></p>
-                  <p class="card-text" >Category: <small class="text-body-secondary" id="category"> }</small></p>
-                  <p class="card-text" >Place: <small class="text-body-secondary" id="place"> </small></p>
+                  <p class="card-text">Date: <small class="text-body-secondary" id="date"> </small></p>
+                  <p class="card-text">Category: <small class="text-body-secondary" id="category"> }</small></p>
+                  <p class="card-text">Place: <small class="text-body-secondary" id="place"> </small></p>
                 </div>
                 <div>
-                  <p class="card-text" id="capacity" ></p>
-                  
+                  <p class="card-text" id="capacity"></p>
+
                   <p class="card-text" id="estimate"> </p>
                   <p class="card-text" id="assistance"> </p>
-  
-                  <p class="card-text" >Price:<small class:"text-body-secondary" id="price"></small></p>
+
+                  <p class="card-text">Price:<small class:"text-body-secondary" id="price"></small></p>
                 </div>
               </div>
               <a href="/home.html" class="btn btn-primary">Go somewhere</a>
-  
+
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
 
   </main>
 

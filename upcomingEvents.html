@@ -14,36 +14,39 @@
 
 <body>
     <header>
+<div class="container">
+    <nav class="navbar navbar-expand-lg">
 
-        <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
 
-            <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="/image/amazing_brand.png" class="logo" alt="logo"></a>
 
-                <a class="navbar-brand" href="#"><img src="/image/amazing_brand.png" class="logo" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end naviga" id="navbarSupportedContent">
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end naviga" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 navi ">
 
-                    <ul class="navbar-nav mb-2 mb-lg-0 navi ">
+                    <li class="nav-item"><a class="nav-link " href="/home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active activer" aria-current="page" href="#">Upcoming
+                            Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pastEvents.html">Past Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/stats.html">Stats</a></li>
 
-                        <li class="nav-item"><a class="nav-link " href="/home.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link active activer" aria-current="page" href="#">Upcoming
-                                Events</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/pastEvents.html">Past Events</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/stats.html">Stats</a></li>
+                </ul>
 
-                    </ul>
-
-                </div>
             </div>
-        </nav>
+        </div>
+    </nav>
+</div>
     </header>
+
     <main>
+
         <div id="carouselExampleCaptions" class="carousel slide carousel-fade">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -89,45 +92,48 @@
             </button>
         </div>
 
-        <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-between">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row py-4 gap-4 align-items-center justify-content-between">
 
-            <div class="padreChk" id="padreChk">
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">Category 1</label>
+                <div class="padreChk" id="padreChk">
+    
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">Category 1</label>
+                    </div>
+    
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox2">Category 2</label>
+                    </div>
+    
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="form-check-label" for="inlineCheckbox3">Category 3</label>
+                    </div>
+    
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                        <label class="form-check-label" for="inlineCheckbox4">Category 4</label>
+                    </div>
+    
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                        <label class="form-check-label" for="inlineCheckbox5">Category 5</label>
+                    </div>
+    
                 </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">Category 2</label>
+    
+    
+                <div>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
+                    </form>
                 </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">Category 3</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
-                    <label class="form-check-label" for="inlineCheckbox4">Category 4</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
-                    <label class="form-check-label" for="inlineCheckbox5">Category 5</label>
-                </div>
-
+    
             </div>
-
-
-            <div>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
-                </form>
-            </div>
-
         </div>
+        
 
 
         <div class="album py-5 bg-body-tertiary">
