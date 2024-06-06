@@ -1,5 +1,24 @@
 import * as funciones from "../modules/functions.js";
-let data = {
+const urlBase = "https://aulamindhub.github.io/amazing-api/events.json"
+let data
+
+function getData(done) {
+    const result = fetch(urlBase);
+    result
+        .then(response => response.json())
+        .then(datos => {
+            done(datos)
+            
+        });
+    
+}
+getData(datos => {
+    console.log(datos);
+    data = datos
+    
+})
+
+/* let data = {
     currentDate: "2023-01-01",
     events: [
         {
@@ -194,9 +213,9 @@ let data = {
             __v: 0,
         },
     ],
-};
-
-let events = data.events
+}; */
+console.log(data);
+//let events = data.events
 let padreTarjetas = document.querySelector(".cardPadre")
 let padreChk = document.querySelector(".padreChk")
 
