@@ -1,3 +1,4 @@
+import * as funciones from "./functions.js";
 let data = {
     currentDate: "2023-01-01",
     events: [
@@ -199,9 +200,7 @@ let events = data.events
 let padreTarjetas = document.querySelector(".cardPadre")
 let padreChk = document.querySelector(".padreChk")
 
-
-
-pintarTarjetas(events, padreTarjetas)
+funciones.pintarTarjetas(events, padreTarjetas)
 
 let buscar = document.getElementById("search")
 buscar.addEventListener('input', (e) => {
@@ -216,10 +215,10 @@ buscar.addEventListener('input', (e) => {
     }
 
     if (e.target.value != "") {
-        pintarTarjetas(tarjetasFiltradas, padreTarjetas)
+        funciones.pintarTarjetas(tarjetasFiltradas, padreTarjetas)
     }
     else {
-        pintarTarjetas(tarjetasFiltradas, padreTarjetas)
+        funciones.pintarTarjetas(tarjetasFiltradas, padreTarjetas)
     }
 })
 
@@ -251,7 +250,7 @@ chk1.addEventListener('change', (evento) => {
         
     }
 
-    pintarTarjetas(eventosFiltrados, padreTarjetas)
+    funciones.pintarTarjetas(eventosFiltrados, padreTarjetas)
 
     
 
@@ -294,7 +293,7 @@ function pintarChk(arregloAPintar, divPadre) {
     }
 }
 
-function crearTarjeta(divPadre, tarjeta) {
+/* function crearTarjeta(divPadre, tarjeta) {
     let nuevaTarjeta = document.createElement("div")
     nuevaTarjeta.classList.add("col")
     nuevaTarjeta.innerHTML = `
@@ -311,14 +310,14 @@ function crearTarjeta(divPadre, tarjeta) {
 </div>`
     divPadre.appendChild(nuevaTarjeta)
 
-}
+} */
 
-function pintarTarjetas(arregloAPintar, divPadre) {
+/* function pintarTarjetas(arregloAPintar, divPadre) {
     divPadre.innerHTML = ""
     for (let i = 0; i < arregloAPintar.length; i++) {
         crearTarjeta(divPadre, arregloAPintar[i])
     }
-}
+} */
 
 function error() {
     padreTarjetas.innerHTML = `
