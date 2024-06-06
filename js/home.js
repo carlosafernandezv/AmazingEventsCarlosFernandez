@@ -293,6 +293,7 @@ function pintarChk(arregloAPintar, divPadre) {
         crearChk(divPadre, arregloAPintar[i])
     }
 }
+
 function crearTarjeta(divPadre, tarjeta) {
     let nuevaTarjeta = document.createElement("div")
     nuevaTarjeta.classList.add("col")
