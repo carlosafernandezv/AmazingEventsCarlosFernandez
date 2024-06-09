@@ -195,15 +195,34 @@ let data = {
     ],
 };
 
+const urlBase = "https://aulamindhub.github.io/amazing-api/events.json"
+
+function getData(done) {
+    const result = fetch(urlBase);
+    result
+        .then(response => response.json())
+        .then(datos => {
+            done(datos)
+
+        });
+
+}
+
+let img = document.getElementById("img")
+console.log(img);
+
 let events = data.events
+console.log(events);
 idDetails = window.location.href
 idDetails = new URL(idDetails).searchParams.get("id")
+let tarjeta
 
 document.addEventListener("DOMContentLoaded", () => {
-    let tarjeta = events.filter(events => events._id == idDetails)
+    tarjeta = events.filter(events => events._id == idDetails)
     console.log(tarjeta);
     tarjeta.forEach(events => {
         let img = document.getElementById("img").innerHTML = `<img id="img" src="${events.image}" class="img-fluid rounded-start" alt="${events.name}">`
+        console.log(img);
         let name = document.getElementById("name").innerHTML = `${events.name}`
         let description = document.getElementById("description").innerHTML = `${events.description}`
         let date = document.getElementById("date").innerHTML = `${events.date}`
@@ -213,19 +232,19 @@ document.addEventListener("DOMContentLoaded", () => {
         let estimate = document.getElementById("estimate")
         let assistance = document.getElementById("assistance")
         let price = document.getElementById("price").innerHTML = `${events.price}`
-                //asistencia no es igual nul
+        //asistencia no es igual nul
         if (events.assistance != null || events.assistance != undefined) {
 
             assistance.innerHTML = `Assistance:<small class="text-body-secondary"> ${events.assistance} </small> `
             estimate.style.display = "none";
-            
+
         }
-        else{
+        else {
             estimate.innerHTML = `Estimate:<small class="text-body-secondary"> ${events.estimate} </small> `
             assistance.style.display = "none";
-            
+
         }
-        
+
 
     })
 })

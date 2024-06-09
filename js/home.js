@@ -12,6 +12,7 @@ function getData(done) {
         });
 
 }
+
 getData(datos => {
     console.log(datos);
     let events = datos.events
