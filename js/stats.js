@@ -1,7 +1,9 @@
 import * as funciones from "../modules/functions.js";
 
 const urlBase = "https://aulamindhub.github.io/amazing-api/events.json"
-
+let tabla1 = document.getElementById("tabla1")
+let tabla2 = document.getElementById("tabla2")
+let tabla3 = document.getElementById("tabla3")
 function getData(done) {
     const result = fetch(urlBase);
     result
@@ -15,6 +17,8 @@ function getData(done) {
 getData(datos => {
     console.log(datos);
     let events = datos.events
+
+
 
     function calcularPorcentaje(events) {
         return (events.assistance / events.capacity) * 100;
@@ -35,8 +39,6 @@ getData(datos => {
         return eventoMaximo;
     }
 
-    let eventoMaximo = eventoConMayorAsistencia(events);
-    console.log(`El evento con el mayor porcentaje de asistencia es: ${eventoMaximo.name} con un ${eventoMaximo.assistance}/${eventoMaximo.capacity} (${calcularPorcentaje(eventoMaximo)}%)`);
 
     function eventoConMenorAsistencia(events) {
         let minPorcentaje = Infinity;
@@ -53,10 +55,6 @@ getData(datos => {
         return eventoMinimo;
     }
 
-
-    const eventoMinimo = eventoConMenorAsistencia(events);
-    console.log(`El evento con el menor porcentaje de asistencia es: ${eventoMinimo.name} con un ${eventoMinimo.assistance}/${eventoMinimo.capacity} (${calcularPorcentaje(eventoMinimo)}%)`);
-    // Función para encontrar el evento con la mayor capacidad
     function eventoConMayorCapacidad(events) {
         let maxCapacidad = 0;
         let eventoMaximo = {};
@@ -71,15 +69,92 @@ getData(datos => {
         return eventoMaximo;
     }
 
-    // Uso de la función
-    let eventoMaximo2 = eventoConMayorCapacidad(events);
-    console.log(`El evento con la mayor capacidad es: ${eventoMaximo2.name} con una capacidad de ${eventoMaximo2.capacity} personas`);
+    let eventoMinimo = eventoConMenorAsistencia(events);
+    let eventoMaximo = eventoConMayorAsistencia(events);
+    let eventoCapacidad = eventoConMayorCapacidad(events)
+
+    tabla1.innerHTML =
+        `
+        <tr>
+            <td> ${eventoMaximo.name} con ${calcularPorcentaje(eventoMaximo)} %</td>
+            <td> ${eventoMinimo.name} con ${calcularPorcentaje(eventoMinimo)} %</td>
+            <td> ${eventoCapacidad.name} </td>
+        </tr>
+    `
+
+
+    let arregloPasados = []
+    let arregloFuturos = []
+
+    for (let i = 0; i < events.length; i++) {
+        if (datos.currentDate > events[i].date) {
+            arregloPasados.push(events[i])
+
+        } else {
+            arregloFuturos.push(events[i])
+        }
+    }
+
+
+
+    // Inicializamos un objeto para almacenar los ingresos por categoría
+    let ingresosPorCategoria = {};
+
+    // Calculamos los ingresos por evento y los sumamos por categoría
+    arregloPasados.forEach(evento => {
+        let ingreso = evento.price * evento.assistance;
+        if (ingresosPorCategoria[evento.category]) {
+            ingresosPorCategoria[evento.category] += ingreso;
+        } else {
+            ingresosPorCategoria[evento.category] = ingreso;
+        }
+    });
+
+
+    // Inicializamos un objeto para almacenar los ingresos estimados por categoría
+    let ingresosPorCategoria2 = {};
+
+    // Calculamos los ingresos estimados por evento y los sumamos por categoría
+    arregloFuturos.forEach(evento => {
+        let ingresoEstimado = evento.price * evento.estimate;
+        if (ingresosPorCategoria2[evento.category]) {
+            ingresosPorCategoria2[evento.category] += ingresoEstimado;
+        } else {
+            ingresosPorCategoria2[evento.category] = ingresoEstimado;
+        }
+    });
+
+    tabla2.innerHTML =''
+    for (let categoria in ingresosPorCategoria2) {
+        
+        
+        tabla2.innerHTML += 
+        `
+        <tr>
+            <td>${categoria}</td>
+            <td>${ingresosPorCategoria2[categoria]}</td>
+            <td>${ingresosPorCategoria2[categoria]}</td>
+        </tr>
+        `
+    }
+
+
+    tabla3.innerHTML =''
+    for (let categoria in ingresosPorCategoria) {
+        tabla3.innerHTML += 
+        `
+        <tr>
+            <td>${categoria}</td>
+            <td>${ingresosPorCategoria[categoria]}</td>
+            <td>${ingresosPorCategoria[categoria]}</td>
+        </tr>
+        `
+    }
+
 
     
-
-
-
 })
+
 
 
 

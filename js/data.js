@@ -444,3 +444,8 @@
         "estimate": 980
     }
 ]
+
+
+name, category, price, capacity, assistance
+
+name, category, price, capacity, estimate
