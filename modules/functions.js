@@ -21,7 +21,6 @@ export function crearTarjeta(divPadre, tarjeta) {
     </div>
 </div>`
     divPadre.appendChild(nuevaTarjeta)
-
 }
 
 export function crearChk(divPadre, tarjeta) {
@@ -29,11 +28,10 @@ export function crearChk(divPadre, tarjeta) {
     nuevachk.classList.add("form-check-inline")
     nuevachk.classList.add("form-check")
     nuevachk.innerHTML =
-        `
+    `
         <input class="form-check-input" type="checkbox" id="${tarjeta.name}" value="${tarjeta.name}">
         <label class="form-check-label" for="${tarjeta.name}">${tarjeta.name}</label>
-   `
-
+    `
     divPadre.appendChild(nuevachk)
 }
 
@@ -45,7 +43,6 @@ export function pintarChk(arregloAPintar, divPadre) {
 }
 
 export function filtrarCheck(chkCheck, arreglo) {
-
     chkCheck = Array.from(chkCheck)
     chkCheck = chkCheck.map(chk1 => chk1.value)
     let eventosFiltrados = arreglo.filter(events => chkCheck.includes(events.category))
@@ -56,13 +53,11 @@ export function filtrarText(texto, arreglo) {
     let tarjetasFiltradas = arreglo.filter(events => events.name.toLowerCase().includes(texto.toLowerCase()))
     console.log(tarjetasFiltradas);
     return tarjetasFiltradas
-    
-    
-    
 }
 
-export function error() {
-    padreTarjetas.innerHTML = `
+/* export function error() {
+    padreTarjetas.innerHTML = 
+`
         <div class="container text-center">
 		<div class="brand">
 			<span class="glyphicon glyphicon-king" aria-hidden="true"></span>
@@ -72,6 +67,5 @@ export function error() {
 		<p>Oops! The Page you requested was not found!</p>
 		<a href="#" class="btn-outline"> Back to Home</a>
 	</div>
-   `
-
-}
+`
+} */
