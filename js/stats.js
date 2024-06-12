@@ -96,63 +96,111 @@ getData(datos => {
     }
 
 
+/* tabla2.innerHTML = ''
+    for (let categoria in ingresosPorCategoria2, porcentajeAsistenciaPorCategoria ) {
 
-    // Inicializamos un objeto para almacenar los ingresos por categoría
-    let ingresosPorCategoria = {};
-
-    // Calculamos los ingresos por evento y los sumamos por categoría
-    arregloPasados.forEach(evento => {
-        let ingreso = evento.price * evento.assistance;
-        if (ingresosPorCategoria[evento.category]) {
-            ingresosPorCategoria[evento.category] += ingreso;
-        } else {
-            ingresosPorCategoria[evento.category] = ingreso;
-        }
-    });
-
-
-    // Inicializamos un objeto para almacenar los ingresos estimados por categoría
-    let ingresosPorCategoria2 = {};
-
-    // Calculamos los ingresos estimados por evento y los sumamos por categoría
-    arregloFuturos.forEach(evento => {
-        let ingresoEstimado = evento.price * evento.estimate;
-        if (ingresosPorCategoria2[evento.category]) {
-            ingresosPorCategoria2[evento.category] += ingresoEstimado;
-        } else {
-            ingresosPorCategoria2[evento.category] = ingresoEstimado;
-        }
-    });
-
-    tabla2.innerHTML =''
-    for (let categoria in ingresosPorCategoria2) {
-        
-        
-        tabla2.innerHTML += 
-        `
+        tabla2.innerHTML +=
+            `
         <tr>
             <td>${categoria}</td>
             <td>${ingresosPorCategoria2[categoria]}</td>
-            <td>${ingresosPorCategoria2[categoria]}</td>
+            <td>${porcentajeAsistenciaPorCategoria[categoria]}%</td>
         </tr>
         `
     }
 
 
-    tabla3.innerHTML =''
+    tabla3.innerHTML = ''
     for (let categoria in ingresosPorCategoria) {
-        tabla3.innerHTML += 
-        `
+        tabla3.innerHTML +=
+            `
         <tr>
             <td>${categoria}</td>
             <td>${ingresosPorCategoria[categoria]}</td>
             <td>${ingresosPorCategoria[categoria]}</td>
         </tr>
         `
+    } */
+
+
+  
+
+  
+  // Crear una tabla vacía
+  let tablaPasados = [];
+  
+  // Llenar la tabla con los datos de eventos pasados
+  arregloPasados.forEach(evento => {
+    let ingresos = evento.price * evento.assistance;
+    let porcentajeAsistencia = (evento.assistance / evento.capacity) * 100;
+  
+    tablaPasados.push({
+      categories: evento.category,
+      revenues: ingresos,
+      "percentage of assistance": porcentajeAsistencia.toFixed(2) + "%",
+    });
+  });
+  
+  // Imprimir la tabla de eventos pasados (puedes adaptar esto según tu necesidad)
+  console.table(tablaPasados);
+  
+/*   // Supongamos que tienes un array llamado eventosPasados con objetos de eventos
+
+  
+  // Creamos un objeto para almacenar las sumas por categoría
+  let sumasPorCategoria = {};
+  
+  // Recorremos los eventos y acumulamos los valores
+  arregloPasados.forEach(evento => {
+    let { category, price, assistance } = evento;
+    if (!sumasPorCategoria[category]) {
+      sumasPorCategoria[category] = { totalPrice: 0, totalAssistance: 0 };
     }
+    sumasPorCategoria[category].totalPrice += price;
+    sumasPorCategoria[category].totalAssistance += assistance;
+  });
+  
 
 
-    
+  // Imprimimos los resultados
+  for (let category in sumasPorCategoria) {
+    let { totalPrice, totalAssistance } = sumasPorCategoria[category];
+
+    console.log(`Categoría: ${category}`);
+    console.log(`Total Price: $${totalPrice}`);
+    console.log(`Total Assistance: ${totalAssistance}`);
+    console.log('---');
+    console.log('Categoría: ${category} = $${totalPrice}*${totalAssistance}');
+  }
+ */
+  // Supongamos que tienes el mismo array eventosPasados con objetos de eventos
+
+  
+  // Creamos un objeto para almacenar los ingresos por categoría
+  const ingresosPorCategoria = {};
+  
+  // Recorremos los eventos y calculamos los ingresos
+  arregloPasados.forEach(evento => {
+    const { category, price, assistance } = evento;
+    const revenue = price * assistance;
+    if (!ingresosPorCategoria[category]) {
+      ingresosPorCategoria[category] = 0;
+    }
+    ingresosPorCategoria[category] += revenue;
+  });
+  
+  // Imprimimos los resultados
+  for (const category in ingresosPorCategoria) {
+    const totalRevenue = ingresosPorCategoria[category];
+    console.log(`Categoría: ${category}`);
+    console.log(`Total Revenue: $${totalRevenue}`);
+    console.log('---');
+  }
+  
+
+  
+  
+
 })
 
 

@@ -75,3 +75,4 @@ let chk1 = document.getElementById("padreChk")
 
 
 
+console.log(padreChk);
