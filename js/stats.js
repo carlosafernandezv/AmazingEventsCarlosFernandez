@@ -96,18 +96,7 @@ getData(datos => {
     }
 
 
-/* tabla2.innerHTML = ''
-    for (let categoria in ingresosPorCategoria2, porcentajeAsistenciaPorCategoria ) {
-
-        tabla2.innerHTML +=
-            `
-        <tr>
-            <td>${categoria}</td>
-            <td>${ingresosPorCategoria2[categoria]}</td>
-            <td>${porcentajeAsistenciaPorCategoria[categoria]}%</td>
-        </tr>
-        `
-    }
+/* 
 
 
     tabla3.innerHTML = ''
@@ -126,75 +115,118 @@ getData(datos => {
   
 
   
-  // Crear una tabla vacía
-  let tablaPasados = [];
+
+
+
   
-  // Llenar la tabla con los datos de eventos pasados
-  arregloPasados.forEach(evento => {
-    let ingresos = evento.price * evento.assistance;
-    let porcentajeAsistencia = (evento.assistance / evento.capacity) * 100;
+  // Función para calcular las ganancias por categoría
+  function calcularGananciasPorCategoria(arregloPasados) {
+    const gananciasPorCategoria = {};
   
-    tablaPasados.push({
-      categories: evento.category,
-      revenues: ingresos,
-      "percentage of assistance": porcentajeAsistencia.toFixed(2) + "%",
+    arregloPasados.forEach((arregloPasados) => {
+      const { category, price, assistance } = arregloPasados;
+      if (!gananciasPorCategoria[category]) {
+        gananciasPorCategoria[category] = 0;
+      }
+      gananciasPorCategoria[category] += price * assistance;
     });
-  });
   
-  // Imprimir la tabla de eventos pasados (puedes adaptar esto según tu necesidad)
-  console.table(tablaPasados);
-  
-/*   // Supongamos que tienes un array llamado eventosPasados con objetos de eventos
-
-  
-  // Creamos un objeto para almacenar las sumas por categoría
-  let sumasPorCategoria = {};
-  
-  // Recorremos los eventos y acumulamos los valores
-  arregloPasados.forEach(evento => {
-    let { category, price, assistance } = evento;
-    if (!sumasPorCategoria[category]) {
-      sumasPorCategoria[category] = { totalPrice: 0, totalAssistance: 0 };
-    }
-    sumasPorCategoria[category].totalPrice += price;
-    sumasPorCategoria[category].totalAssistance += assistance;
-  });
-  
-
-
-  // Imprimimos los resultados
-  for (let category in sumasPorCategoria) {
-    let { totalPrice, totalAssistance } = sumasPorCategoria[category];
-
-    console.log(`Categoría: ${category}`);
-    console.log(`Total Price: $${totalPrice}`);
-    console.log(`Total Assistance: ${totalAssistance}`);
-    console.log('---');
-    console.log('Categoría: ${category} = $${totalPrice}*${totalAssistance}');
+    return gananciasPorCategoria;
   }
- */
-  // Supongamos que tienes el mismo array eventosPasados con objetos de eventos
+  
+  // Función para calcular el porcentaje de asistencia por categoría
+  function calcularPorcentajeAsistenciaPorCategoria(arregloPasados) {
+    const porcentajeAsistenciaPorCategoria = {};
+  
+    arregloPasados.forEach((arregloPasados) => {
+      const { category, capacity, assistance } = arregloPasados;
+      const porcentaje = (assistance / capacity) * 100;
+      porcentajeAsistenciaPorCategoria[category] = porcentaje.toFixed(2); // Redondeamos a 2 decimales
+    });
+  
+    return porcentajeAsistenciaPorCategoria;
+  }
+  
+  // Llamada a las funciones y obtención de resultados
+  const ganancias = calcularGananciasPorCategoria(arregloPasados);
+  const porcentajes = calcularPorcentajeAsistenciaPorCategoria(arregloPasados);
+  
+  // Imprimir resultados
+  for (const categoria in ganancias) {
+    console.log(`Ganancias en ${categoria}: $${ganancias[categoria]}`);
+    console.log(`Porcentaje de asistencia en ${categoria}: ${porcentajes[categoria]}%`);
+  }
+  
+
+
+  tabla3.innerHTML = ''
+
+  for (const categoria in ganancias) {
+    tabla3.innerHTML +=
+            `
+        <tr>
+            <td>${categoria}</td>
+            <td>$${ganancias[categoria]}</td>
+            <td>${porcentajes[categoria]}%</td>
+        </tr>
+        `
+    
+  }
+    
 
   
-  // Creamos un objeto para almacenar los ingresos por categoría
-  const ingresosPorCategoria = {};
+  // Función para calcular las ganancias por categoría
+  function calcularGananciasPorCategoria2(arregloFuturos) {
+    const gananciasPorCategoria2 = {};
   
-  // Recorremos los eventos y calculamos los ingresos
-  arregloPasados.forEach(evento => {
-    const { category, price, assistance } = evento;
-    const revenue = price * assistance;
-    if (!ingresosPorCategoria[category]) {
-      ingresosPorCategoria[category] = 0;
-    }
-    ingresosPorCategoria[category] += revenue;
-  });
+    arregloFuturos.forEach((arregloFuturos) => {
+      const { category, price, estimate } = arregloFuturos;
+      if (!gananciasPorCategoria2[category]) {
+        gananciasPorCategoria2[category] = 0;
+      }
+      gananciasPorCategoria2[category] += price * estimate;
+    });
   
-  // Imprimimos los resultados
-  for (const category in ingresosPorCategoria) {
-    const totalRevenue = ingresosPorCategoria[category];
-    console.log(`Categoría: ${category}`);
-    console.log(`Total Revenue: $${totalRevenue}`);
-    console.log('---');
+    return gananciasPorCategoria2;
+  }
+  
+  // Función para calcular el porcentaje de asistencia por categoría
+  function calcularPorcentajeAsistenciaPorCategoria2(arregloFuturos) {
+    const porcentajeAsistenciaPorCategoria2 = {};
+  
+    arregloFuturos.forEach((arregloFuturos) => {
+      const { category, capacity, estimate } = arregloFuturos;
+      const porcentaje1 = (estimate / capacity) * 100;
+      porcentajeAsistenciaPorCategoria2[category] = porcentaje1.toFixed(2); // Redondeamos a 2 decimales
+    });
+  
+    return porcentajeAsistenciaPorCategoria2;
+  }
+  
+  // Llamada a las funciones y obtención de resultados
+  const ganancias1 = calcularGananciasPorCategoria2(arregloFuturos);
+  const porcentajes1 = calcularPorcentajeAsistenciaPorCategoria2(arregloFuturos);
+  
+  // Imprimir resultados
+  for (const categoria1 in ganancias1) {
+    console.log(`Ganancias en ${categoria1}: $${ganancias1[categoria1]}`);
+    console.log(`Porcentaje de asistencia en ${categoria1}: ${porcentajes1[categoria1]}%`);
+  }
+  
+
+
+  tabla2.innerHTML = ''
+
+  for (const categoria1 in ganancias1) {
+    tabla2.innerHTML +=
+            `
+        <tr>
+            <td>${categoria1}</td>
+            <td>$${ganancias1[categoria1]}</td>
+            <td>${porcentajes1[categoria1]}%</td>
+        </tr>
+        `
+    
   }
   
 
